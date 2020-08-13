@@ -1,0 +1,123 @@
+service: Meeting-Aws-Lambda
+ameworkVersion: "=X.X.X"
+provider:
+  name: aws
+  runtime: nodejs12.x
+functions:
+  GetLoginNames:
+    handler: routes/routes.GetLoginNames
+    events:
+     - http:
+         path: login/name
+         method: get
+         cors: true
+  GetLoginPassword:
+    handler: routes/routes.GetLoginPassword
+    events:
+     - http:
+         path: login/password/{name}
+         method: get
+         cors: true
+  RegisterUser:
+    handler: routes/routes.RegisterUser
+    events:
+     - http:
+         path: login/register
+         method: post
+         cors: true
+  ResetPassword:
+    handler: routes/routes.ResetPassword
+    events:
+     - http:
+         path: login/password/reset/{name}
+         method: put
+         cors: true
+  AddLocation:
+    handler: routes/routes.AddLocation
+    events:
+     - http:
+         path: location/add
+         method: post
+         cors: true
+
+  GetLocation:
+    handler: routes/routes.GetLocation
+    events:
+     - http:
+         path: location/get
+         method: get
+         cors: true
+  UpdateLocation:
+    handler: routes/routes.UpdateLocation
+    events:
+     - http:
+         path: location/update/{Lname}
+         method: put
+         cors: true
+  DeleteLocation:
+    handler: routes/routes.DeleteLocation
+    events:
+     - http:
+         path: location/delete/{Lname}
+         method: delete
+         cors: true
+
+  GetMeetings:
+    handler: routes/routes.GetMeetings
+    events:
+     - http:
+         path: meetings/get
+         method: get
+         cors: true
+  CreateMeetings:
+    handler: routes/routes.CreateMeetings
+    events:
+     - http:
+         path: meetings/create/{Uname}
+         method: post
+         cors: true
+  CancelMeetings:
+    handler: routes/routes.CancelMeetings
+    events:
+     - http:
+         path: meetings/cancel/{Uname}/{Mid}
+         method: delete
+         cors: true
+
+  UpdateMeetings:
+    handler: routes/routes.UpdateMeetings
+    events:
+     - http:
+         path: meetings/update/{Uname}/{Mid}
+         method: put
+         cors: true
+  CreatePreference:
+    handler: routes/routes.CreatePreference
+    events:
+     - http:
+         path: preference/create/{Uname}
+         method: post
+         cors: true
+  GetPreference:
+    handler: routes/routes.GetPreference
+    events:
+     - http:
+         path: preference/get/{Uname}
+         method: get
+         cors: true
+  UpdatePreference:
+    handler: routes/routes.UpdatePreference
+    events:
+     - http:
+         path: preference/update/{Uname}
+         method: put
+         cors: true
+  DeletePreference:
+    handler: routes/routes.DeletePreference
+    events:
+     - http:
+         path: preference/delete/{Uname}
+         method: delete
+         cors: true
+plugins:
+      - serverless-offline
